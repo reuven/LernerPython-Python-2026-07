@@ -13,3 +13,4 @@ def add(first : Any, second : Any) -> Any:
 
 print(add(10, 3))
 print(add('a', 'b'))
+print(add('a', 5))
