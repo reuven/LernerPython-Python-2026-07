@@ -8,7 +8,7 @@ print(hello(5))
 print(hello([10, 20, 30]))
 print(hello(hello))
 
-def add(first : Any, second : Any) -> Any:
+def add(first, second):
     return first + second
 
 print(add(10, 3))
