@@ -1,0 +1,6 @@
+# server settings
+host=localhost
+port=8080
+
+timeout=30
+debug=false
