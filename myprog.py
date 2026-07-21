@@ -1,3 +1,5 @@
+from typing import Any
+
 def hello(name : str) -> str:
     return f'Hello, {name}!'
 
@@ -6,7 +8,7 @@ print(hello(5))
 print(hello([10, 20, 30]))
 print(hello(hello))
 
-def add(first : int|str, second : int|str) -> int|str:
+def add(first : Any, second : Any) -> Any:
     return first + second
 
 print(add(10, 3))
