@@ -6,7 +6,7 @@ print(hello(5))
 print(hello([10, 20, 30]))
 print(hello(hello))
 
-def add(first, second):
+def add(first : int, second : int) -> int:
     return first + second
 
 print(add(10, 3))
