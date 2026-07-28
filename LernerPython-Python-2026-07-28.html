@@ -7796,6 +7796,2693 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d235c26d-4655-4cda-8173-a7de2aa5728d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Agenda">Agenda<a class="anchor-link" href="#Agenda">¶</a></h1><ul>
+<li>Catch-up<ul>
+<li>Enum</li>
+<li>Pathlib</li>
+</ul>
+</li>
+<li>Tools<ul>
+<li><code>uv</code>, <code>ruff</code>, <code>pyproject.toml</code></li>
+<li>Packaging, wheels, wheelnext, etc.</li>
+</ul>
+</li>
+<li>Concurrency and parallelism<ul>
+<li>threads</li>
+<li>processes</li>
+<li>interpreters</li>
+<li>GIL</li>
+<li>asyncio</li>
+</ul>
+</li>
+<li>Governance and processes<ul>
+<li>Life after the BDFL</li>
+<li>PSF, steering committee</li>
+<li>Versions</li>
+<li>PyPI -- its present and future</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f4ab87be-cc7b-45ce-bb62-a57d88565179">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Enums">Enums<a class="anchor-link" href="#Enums">¶</a></h1><p>If you need/want a set of symbolic values, many languages offer the option of an "enum." The idea is that you could define a bunch of constants or variables, but it's easier to do it within a more established type.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=90e01eda-43f8-4cec-bb7d-43852ee98ee4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Days</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">SUNDAY</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">MONDAY</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">TUESDAY</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">WEDNESDAY</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">THURSDAY</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">FRIDAY</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">SATURDAY</span> <span class="o">=</span> <span class="mi">7</span>      
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50b3dfd0-71b4-4d88-a2f8-15ec42513301">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>With this class, and with its class attributes, I can now talk about <code>Days.SUNDAY</code>, and have a value that's basically a constsant.</p>
+<p>You could think of enums as a namespaces for related constants.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6d577813-0f5a-47e0-9537-b1e301507426">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Days</span><span class="o">.</span><span class="n">SUNDAY</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Days.SUNDAY: 1&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ded5f340-81ac-4498-9673-fff5bf8e43d0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Days</span><span class="o">.</span><span class="n">SUNDAY</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>1</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6f7f41ab-5a9d-427c-9021-5c81a22c5471">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">attrgetter</span>
+
+<span class="n">list_of_days</span> <span class="o">=</span> <span class="p">[</span><span class="n">Days</span><span class="o">.</span><span class="n">SUNDAY</span><span class="p">,</span> <span class="n">Days</span><span class="o">.</span><span class="n">WEDNESDAY</span><span class="p">,</span> <span class="n">Days</span><span class="o">.</span><span class="n">MONDAY</span><span class="p">]</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">list_of_days</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">'value'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[&lt;Days.SUNDAY: 1&gt;, &lt;Days.MONDAY: 2&gt;, &lt;Days.WEDNESDAY: 4&gt;]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bc374c77-490a-4d5a-9c8b-4d47eadb3bf8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Days</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">SUNDAY</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">MONDAY</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">TUESDAY</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">WEDNESDAY</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">THURSDAY</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">FRIDAY</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">SATURDAY</span> <span class="o">=</span> <span class="mi">7</span>      
+    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7c81db8b-17c8-4af5-a384-f570f5b641b3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">list_of_days</span> <span class="o">=</span> <span class="p">[</span><span class="n">Days</span><span class="o">.</span><span class="n">SUNDAY</span><span class="p">,</span> <span class="n">Days</span><span class="o">.</span><span class="n">WEDNESDAY</span><span class="p">,</span> <span class="n">Days</span><span class="o">.</span><span class="n">MONDAY</span><span class="p">]</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">list_of_days</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[&lt;Days.SUNDAY: 1&gt;, &lt;Days.MONDAY: 2&gt;, &lt;Days.WEDNESDAY: 4&gt;]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0044dda2-66a7-48f2-90d3-861ccc2769a9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># automatically number!</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">IntEnum</span><span class="p">,</span> <span class="n">auto</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Days</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">SUNDAY</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">MONDAY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">TUESDAY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">WEDNESDAY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">THURSDAY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">FRIDAY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">SATURDAY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>   
+    
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6d7a1b4c-a449-4fe9-b253-5f3cc2640e12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Days</span><span class="o">.</span><span class="n">SUNDAY</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Days.SUNDAY: 0&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=aed7c971-ec2a-4522-9a13-25e24100c785">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Days</span><span class="o">.</span><span class="n">MONDAY</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Days.MONDAY: 1&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=dd57b9ac-a6b7-45c5-9c0c-1d296bdca4e7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Months</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="n">JANUARY</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">FEBRUARY</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+    <span class="n">MARCH</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ab5ced10-c047-4164-b8f3-1177c4de805d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Months</span><span class="o">.</span><span class="n">JANUARY</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Months.JANUARY: 0&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22eb18ae-17b0-442d-8e75-0327943437f6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Months</span><span class="o">.</span><span class="n">FEBRUARY</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;Months.FEBRUARY: 1&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=726e6b39-32c0-4a27-a56a-3f557212c3d4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Pathlib">Pathlib<a class="anchor-link" href="#Pathlib">¶</a></h1><p>If you want to work with directories and files, you have a <em>lot</em> of functions you can use, most of which are in the <code>os</code> module (in the standard library), but some of which are scattered elsewhere. For example, I love to use <code>glob</code>.</p>
+<p><code>pathlib</code> is from Python 3.4, and it provides one class, <code>Path</code>. That class can be used for any file or directory on any operating system. It takes all of the functionality that was in <code>os</code> and elsewhere, and makes that all into methods on a <code>Path</code> object.</p>
+<p>The bottom line is that it centralizes all of the working with paths, and makes it easier.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=78d6a98e-4cc5-4791-8f3d-369697d87f44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8400d24a-fe1d-4294-9680-914f4e2a2005">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/Users/reuven'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=aeb12cc2-f72f-413e-8ec6-63a68ad6171e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>pathlib.PosixPath</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64a469a3-7ad6-46ec-bee3-9f63568a0ad5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>PosixPath('/Users/reuven')</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=358d8af0-9424-411b-9bbc-dcecc9cb5f5b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[27]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> p.listdir()
+
+<span class="ansi-red-fg">AttributeError</span>: 'PosixPath' object has no attribute 'listdir'</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2d770c6e-2843-4ab2-8604-4aa13e345180">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">one_path</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">one_path</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+&lt;class 'pathlib.PosixPath'&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff20531d-8821-4632-8c7c-5b36b52bdff5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>When I create a <code>Path</code> on a directory, any action I take that lists files in that directory returns new <code>Path</code> objects, which means that they also have all of those methods.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f99b1351-1007-4a88-9dc3-ef69d1daca02">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">one_path</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.txt'</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">one_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>/Users/reuven/.tiigo-api-key.txt
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bc74ec9c-9c9f-42e0-893f-59d58e3c1427">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># what if I want to get a file in the Path?</span>
+<span class="c1"># for example, I have a .zshrc file in my home directory. </span>
+<span class="c1"># How can I get a Path to that?</span>
+
+<span class="n">p</span> <span class="o">/</span> <span class="s1">'.zshrc'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>PosixPath('/Users/reuven/.zshrc')</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a65d22c1-c56f-4275-b7a8-62528ded14c9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">/</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/Users/reuven/.zshrc'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>PosixPath('/Users/reuven/.zshrc')</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0ef1e6c9-3baf-428c-a5fd-267a18d42c0b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>True</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e6959e39-b515-4475-9296-3a55b93c51da">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>False</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e2a4ce06-35b1-4bf1-aa86-3aa789c178b5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="s1">'.zshrc'</span><span class="p">)</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>False</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81185f05-790b-4837-b725-149775303c6b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="s1">'.zshrc'</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[40]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>True</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c92e559a-d9e7-4eb2-8daa-eea19797c96e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># what if I want to open the file?</span>
+
+<span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="s1">'.zshrc'</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[42]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>'# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.\n# Initialization code that may require console input (password prompts, [y/n]\n# confirmations, etc.) must go above this block; everything else may go below.\nif [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then\n  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"\nfi\n\n\n# Path to your oh-my-zsh configuration.\nexport ZSH=$HOME/.oh-my-zsh\nexport EDITOR=/Applications/Emacs.app/Contents/MacOS/bin/emacsclient\n\nplugins=(emacs git macos python brew zsh-syntax-highlighting uv chezmoi)\nZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)\n\ntypeset -U path fpath   # guarantee uniqueness of path entries\n\ntypeset -A ZSH_HIGHLIGHT_STYLES\nZSH_HIGHLIGHT_STYLES[globbing]=\'fg=cyan\'\nsource $ZSH/oh-my-zsh.sh\n\nalias ec="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n"\nalias ls="ls -BF --color=auto"\n\n# eza: modern ls (git status, tree). Plain `ls` stays GNU ls above.\nif (( $+commands[eza] )); then\n  alias ll="eza -lg --git --group-directories-first"\n  alias la="eza -lag --git --group-directories-first"\n  alias lt="eza --tree --level=2"\nfi\n\nexport PAGER=less\nexport LESS=\'-Rs\'\n\n# bat: syntax-highlighted `cat`; also use it for colorized man pages\n(( $+commands[bat] )) &amp;&amp; export MANPAGER="sh -c \'col -bx | bat -l man -p\'"\n\nzstyle \':completion:*\' completer _complete _match _approximate\nzstyle \':completion:*:match:*\' original only\nzstyle \':completion:*:approximate:*\' max-errors 1 numeric\n\n# tab completion for PID :D\nzstyle \':completion:*:*:kill:*\' menu yes select\nzstyle \':completion:*:kill:*\' force-list always\n\n# cd not select parent dir\nzstyle \':completion:*:cd:*\' ignore-parents parent pwd\n\n# get omz updates\nzstyle \':omz:update\' mode reminder\n\nbindkey "\\e." insert-last-word\n\nsetopt hist_ignore_all_dups\nsetopt interactivecomments\n\nexport EMAIL="reuven@lerner.co.il"\nexport NAME="Reuven M. Lerner"\nexport SMTPSERVER="smtp.emailsrvr.com"\n\nexport PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"\nexport PATH="$HOME/.cargo/bin:$PATH"\nexport PATH="$HOME/.local/bin:$PATH"\n\n[[ -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]] &amp;&amp;\n  source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme\n\n[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh\n\n[[ -f $HOME/.config/broot/launcher/bash/br ]] &amp;&amp;\n  source $HOME/.config/broot/launcher/bash/br\n\n\n# lazy-load the UV publishing token to PyPI, but also handle the noglob omz uv alias\nunalias uv 2&gt;/dev/null\nuv() {\n  if [[ $1 == publish &amp;&amp; -z $UV_PUBLISH_TOKEN ]]; then\n    export UV_PUBLISH_TOKEN="$(keyring get https://upload.pypi.org/legacy/ __token__)"\n  fi\n  command uv "$@"\n}\nalias uv=\'noglob uv\'\n\n\nexport GITHUB_TOKEN="$(keyring get github.com reuven)"\n\nexport PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"\n\n# bun completions\n[ -s "$HOME/.bun/_bun" ] &amp;&amp; source "$HOME/.bun/_bun"\n\n# bun\nexport BUN_INSTALL="$HOME/.bun"\nexport PATH="$BUN_INSTALL/bin:$PATH"\n\n# fzf: fuzzy Ctrl-R history, Ctrl-T file search, Alt-C dir jump, completions\n(( $+commands[fzf] )) &amp;&amp; source &lt;(fzf --zsh)\n\n# zoxide: smarter cd -&gt; use `z &lt;dir&gt;` to jump, `zi` for interactive pick\n(( $+commands[zoxide] )) &amp;&amp; eval "$(zoxide init zsh)"\n\n# atuin: searchable SQLite shell history. Inits AFTER fzf so it owns Ctrl-R;\n# --disable-up-arrow keeps the plain Up key as normal zsh history.\n(( $+commands[atuin] )) &amp;&amp; eval "$(atuin init zsh --disable-up-arrow)"\n\nif (( $+commands[chezmoi] )); then\n  cz_src="$(chezmoi source-path)"\n  [[ -n "$(chezmoi status 2&gt;/dev/null)" ]] &amp;&amp;\n    print -P "%F{yellow}⚠ chezmoi: unapplied/uncaptured changes (chezmoi status)%f"\n  [[ -n "$(git -C "$cz_src" status --porcelain 2&gt;/dev/null)" ]] &amp;&amp;\n    print -P "%F{yellow}⚠ chezmoi: uncommitted changes in source dir%f"\n  unset cz_src\nfi\n\ntrue    # &lt;- guarantees .zshrc exits 0\n'</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1bb71798-7d12-474f-b438-fe4866b95b44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">parts</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>('/', 'Users', 'reuven')</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72df1e70-0973-4b82-9c35-4c9fcb7467f8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Why isn't everyone using Pathlib, if it's so cool?</p>
+<ol>
+<li>Inertia</li>
+<li>People believe that Pathlib is very slow, partly because of its OO interface</li>
+<li>Some of the method names have changed a bit -- instead of <code>os.path.isfile</code>, now we have <code>Path.is_file</code></li>
+</ol>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a6e35be5-a161-4a3e-9881-dcb3bb654b6e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">'~reuven'</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[47]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>&lt;generator object Path.iterdir.&lt;locals&gt;.&lt;genexpr&gt; at 0x108a4e7a0&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10770cd7-2dab-4b32-9969-c73a366195c6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[50]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[PosixPath('../LernerPython-Python-2026-07'),
+ PosixPath('../LernerPython-Python-2026-07.zip'),
+ PosixPath('../.DS_Store'),
+ PosixPath('../.pytest_cache'),
+ PosixPath('../BDTMSD-Python-2026-07'),
+ PosixPath('../.coverage'),
+ PosixPath('../.claude'),
+ PosixPath('../.hypothesis'),
+ PosixPath('../README.md'),
+ PosixPath('../course-setup'),
+ PosixPath('../Cisco-concurrency-2026-04'),
+ PosixPath('../.mypy_cache'),
+ PosixPath('../README.md~'),
+ PosixPath('../OReilly-Python-2026-07'),
+ PosixPath('../qrt-2026-02February'),
+ PosixPath('../OReilly-Python-2026-08'),
+ PosixPath('../.ipynb_checkpoints'),
+ PosixPath('../data'),
+ PosixPath('../.idea')]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=df567fe0-3f8b-4e65-95ae-66927acaca37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Another reason to use Pathlib: <code>pytest</code> uses it.</p>
+<p>Whenever you want to test files in <code>pytest</code>, it exposes an API that assumes you're using <code>pathlib</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=cf3b8f27-eb9d-4fc9-be6c-69f519c86833">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># globbing -- this is the wildcard substitution that we often see on the command line, especially * (any characters) and ? (1 character)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9cf686aa-6005-430f-b455-0b6753a3e5f7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.[abc]*'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[55]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[PosixPath('/Users/reuven/.claude.json.backup'),
+ PosixPath('/Users/reuven/.config'),
+ PosixPath('/Users/reuven/.cursor'),
+ PosixPath('/Users/reuven/.copilot'),
+ PosixPath('/Users/reuven/.atuin'),
+ PosixPath('/Users/reuven/.pdfbox.cache'),
+ PosixPath('/Users/reuven/.zprofile.bak'),
+ PosixPath('/Users/reuven/.bashrc'),
+ PosixPath('/Users/reuven/.cdsapirc'),
+ PosixPath('/Users/reuven/.bun'),
+ PosixPath('/Users/reuven/.bundle'),
+ PosixPath('/Users/reuven/.agents'),
+ PosixPath('/Users/reuven/.bbdb'),
+ PosixPath('/Users/reuven/.claude'),
+ PosixPath('/Users/reuven/.cargo'),
+ PosixPath('/Users/reuven/.cups'),
+ PosixPath('/Users/reuven/.censusdis'),
+ PosixPath('/Users/reuven/.context7'),
+ PosixPath('/Users/reuven/.ansible'),
+ PosixPath('/Users/reuven/.claude.json'),
+ PosixPath('/Users/reuven/.bash_profile'),
+ PosixPath('/Users/reuven/.cache'),
+ PosixPath('/Users/reuven/.aws'),
+ PosixPath('/Users/reuven/.bash_history')]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0da4fc61-6ebd-405b-af83-e2dc44f99839">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [57]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="s1">'/etc/passwd'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[57]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>os.stat_result(st_mode=33188, st_ino=364082277, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=9344, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281)</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b333bfb8-9c13-4f2e-9325-cbe909ebb8c3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [58]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="s1">'/etc/passwd'</span><span class="p">)</span><span class="o">.</span><span class="n">st_size</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[58]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>9344</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9350229a-a197-411a-ae68-44f961435d74">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>-l<span class="w"> </span>/etc/passwd
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>-rw-r--r-- 1 root wheel 9344 Jun 25 05:29 /etc/passwd
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0ec8c5f2-1298-489f-b2ed-63ba9f69a376">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">'/etc/passwd'</span><span class="p">)</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[62]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>os.stat_result(st_mode=33188, st_ino=364082277, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=9344, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7cacca53-8766-4317-9e01-e27d532ae962">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Exercise:-File-sizes">Exercise: File sizes<a class="anchor-link" href="#Exercise:-File-sizes">¶</a></h1><ol>
+<li>Ask the user to enter a globbing pattern.</li>
+<li>Go through each file that matches that pattern, and only keep "real" files -- that is, something for which <code>is_file</code> returns <code>True</code></li>
+<li>Based on this, create a dict in which the keys are filenames and the values are the file sizes.</li>
+<li>Print them, sorted by size (lowest to highest)</li>
+</ol>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9d8b4731-1e15-4490-89d1-6691c0242d4a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [73]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">dirname</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'Enter dirname: '</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'Enter pattern: '</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>        <span class="c1"># create the Path object</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>  <span class="c1"># get files matching this pattern</span>
+
+<span class="n">all_files_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">one_file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">one_file</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">one_file</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span>
+        <span class="n">all_files_dict</span><span class="p">[</span><span class="n">one_file</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>
+
+<span class="n">all_files_dict</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[73]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'syslog.conf': 96,
+ 'kern_loader.conf': 0,
+ 'rtadvd.conf': 891,
+ 'pf.conf': 1027,
+ 'launchd.conf': 19,
+ 'autofs.conf': 1932,
+ 'slpsa.conf': 52,
+ 'ntp_opendirectory.conf': 23,
+ 'resolv.conf': 368,
+ 'nfs.conf': 43,
+ 'asl.conf': 1051,
+ 'com.apple.mis.rtadvd.conf': 0,
+ 'ntp.conf': 27,
+ 'AFP.conf': 24,
+ 'man.conf': 2451,
+ 'newsyslog.conf': 1318,
+ 'notify.conf': 557}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ba9ef845-e827-4e77-b8fc-947fb808fd51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [76]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># how can we sort this?</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">all_files_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># itemgetter(1) is the same as [1] applied to each pair</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[76]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[('kern_loader.conf', 0),
+ ('com.apple.mis.rtadvd.conf', 0),
+ ('launchd.conf', 19),
+ ('ntp_opendirectory.conf', 23),
+ ('AFP.conf', 24),
+ ('ntp.conf', 27),
+ ('nfs.conf', 43),
+ ('slpsa.conf', 52),
+ ('syslog.conf', 96),
+ ('resolv.conf', 368),
+ ('notify.conf', 557),
+ ('rtadvd.conf', 891),
+ ('pf.conf', 1027),
+ ('asl.conf', 1051),
+ ('newsyslog.conf', 1318),
+ ('autofs.conf', 1932),
+ ('man.conf', 2451)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9b432363-e9eb-465c-b2ee-92a87e7494ac">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [77]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># let's sort by both size and name</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">all_files_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>  <span class="c1"># primary sort is size, secondary sort is name</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[77]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[('com.apple.mis.rtadvd.conf', 0),
+ ('kern_loader.conf', 0),
+ ('launchd.conf', 19),
+ ('ntp_opendirectory.conf', 23),
+ ('AFP.conf', 24),
+ ('ntp.conf', 27),
+ ('nfs.conf', 43),
+ ('slpsa.conf', 52),
+ ('syslog.conf', 96),
+ ('resolv.conf', 368),
+ ('notify.conf', 557),
+ ('rtadvd.conf', 891),
+ ('pf.conf', 1027),
+ ('asl.conf', 1051),
+ ('newsyslog.conf', 1318),
+ ('autofs.conf', 1932),
+ ('man.conf', 2451)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9a857cdf-abf6-48f5-bd91-d115cbcb5c3d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [69]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'/etc/*.conf'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[69]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>['/etc/syslog.conf',
+ '/etc/kern_loader.conf',
+ '/etc/rtadvd.conf',
+ '/etc/pf.conf',
+ '/etc/launchd.conf',
+ '/etc/autofs.conf',
+ '/etc/slpsa.conf',
+ '/etc/ntp_opendirectory.conf',
+ '/etc/resolv.conf',
+ '/etc/nfs.conf',
+ '/etc/asl.conf',
+ '/etc/com.apple.mis.rtadvd.conf',
+ '/etc/ntp.conf',
+ '/etc/AFP.conf',
+ '/etc/man.conf',
+ '/etc/newsyslog.conf',
+ '/etc/notify.conf']</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=07d3aaf1-5c3a-4652-b210-0c195a8fc017">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e5fa4431">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Tools">Tools<a class="anchor-link" href="#Tools">¶</a></h1><p>I remember when <code>pip</code> didn't come with Python, and you had to download and install it yourself.</p>
+<p>At a certain point, Python came with the <code>ensurepip</code> module, which if you invoked it, would ensure that <code>pip</code> was installed, and that you could then download and install packages from PyPI.</p>
+<p>Then <code>pip</code> became standardized. And a bunch of other packaging and other tools came out.</p>
+<p>Some of the most interesting tools were about improving your code quality.</p>
+<ul>
+<li><code>pep8</code>, which was then renamed <code>pycodestyle</code>, would evaluate your code as per PEP 8 instructions</li>
+<li><code>pylint</code>, which checked your code quality</li>
+<li><code>pyflakes</code>, which also checked your code quality</li>
+</ul>
+<p>The good news is that these tools would give you decent feedback on your code.</p>
+<p>The bad news:</p>
+<ul>
+<li>No one remembered which did what, so we ran all of them</li>
+<li>They were somewhat inconsistent</li>
+<li>They were slow</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad24cb8f-9fb5-44d5-a17e-5f1c31b5dd67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="black-came-out"><code>black</code> came out<a class="anchor-link" href="#black-came-out">¶</a></h1><p>The idea was that you would run <code>black</code> against your code, and it would reformat it!</p>
+<ul>
+<li>It would force your code to adhere to PEP8 standards</li>
+</ul>
+<p>The idea was that if everyone used Black, then everyone's code would like closer to each others.</p>
+<p>It was strongly opinionated -- one opinion was that "" are better than ''.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9d233623-0199-4c08-83d2-f79c6b8305d2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Ruff-came-out">Ruff came out<a class="anchor-link" href="#Ruff-came-out">¶</a></h1><p>Ruff (from Astral) came out 3-4 years ago. It started as just a linter, something that would point to problems in your code.</p>
+<p>Ruff would go through your code and tell you where you had issues:</p>
+<ul>
+<li>Unused variables</li>
+<li>Unused imports</li>
+</ul>
+<p>The biggest thing about Ruff was that it was written in Rust, and thus ran blazingly fast.</p>
+<p>Ruff recently also added reformatting, a la Black. Now you have a one-stop program that will check your code and reformat it. It doesn't have all of the stuff that Black does, but it does have most of it, and they're constantly coming out with new versions and improvements.</p>
+<p>A great place to add it is in your Git pre-commit hooks.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=feabcc76-b854-4ed7-8867-3a00e987b786">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Projects,-etc.">Projects, etc.<a class="anchor-link" href="#Projects,-etc.">¶</a></h1><ul>
+<li>A module is a single file containing Python code. Often a module is just a Python program. Or a Python program is just a module.</li>
+<li>A package is a directory/folder containing one or more modules.</li>
+<li>A distribution package is a folder containing a package, plus a bunch of metadata describing its dependencies, etc.</li>
+<li>A project is now roughly equivalent to a distribution package, in that it has the metadata, and a package, and things you need to (a) share it with others, (b) upload to PyPI, and (c) download from PyPI with the appropriate pieces.</li>
+</ul>
+<p>A big part of modern projects is the <code>pyproject.toml</code> file. This file replaces all sorts of other configuration files and programs we used to use that would describe/define our package.</p>
+<p>For example:</p>
+<ul>
+<li>What is the package name?</li>
+<li>What is its version?</li>
+<li>What does it depend on?</li>
+</ul>
+<p>By using TOML, we're able to get a solid, easy-to-parse configuration that describes what we want.</p>
+<p>Every Python project now uses <code>pyproject.toml</code>. It so happens that <code>uv</code> was created to manage projects, and it assumes you're using <code>pyproject.toml</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5bcdffe9-2788-4180-96f4-402a0c85635b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>I can now create a project with any tool, and it'll interoperate with other tools, IDEs, etc. They'll all coordinate using <code>pyproject.toml</code>.</p>
+<p>None of this solved some of the underlying problems with Python packaging.</p>
+<p>The problems are as follows:</p>
+<ul>
+<li>If you install a package from PyPI, it goes into your <code>site-packages</code> directory (in <code>sys.path</code>)</li>
+<li>Only one version of a package can be installed at a given time.</li>
+<li>If you're working on more than one project, this is a big problem!</li>
+<li>The solution for many years was a "virtual environment," or "venv" -- a project-specific version of <code>site-packages</code></li>
+<li>The way to tell Python to look at your venv, and not the global configuration required a combination of shell scripts, good memory, and some additional utilities to "activate" and "deactivate" the venvs.</li>
+<li>Plus, creating packages for distribution was annoying, with dozens of partially overlapping tools.</li>
+<li>And the resolution of package conflicts was often wrong and/or slow.</li>
+</ul>
+<p>Enter <code>uv</code>. <code>uv</code> promised that it would far faster than <code>pip</code>, and you didn't have to change anything! You install <code>uv</code>, you say <code>uv pip install WHATEVER</code>, and it installs <code>WHATEVER</code> super fast.</p>
+<p>Really, though, <code>uv</code> is the Python packaging super-app. It does everything you want, and tries to hide the annoying things:</p>
+<ul>
+<li><code>uv</code> assumes that everything you do is in a Python project.</li>
+<li>It uses <code>pyproject.toml</code> for much of its coordination.</li>
+<li>If you want to install something from PyPI into your project, don't use <code>pip install</code>. Rather, use <code>uv add</code>, which not only installs it, but also updates <code>pyproject.toml</code>.</li>
+<li>If you want to run your program, use <code>uv run</code>, which activates the venv.</li>
+<li><code>uv</code> also keeps a local file, <code>uv.lock</code>, which tracks every possible version of every package you have specified that you need, as well as the packages that <em>those</em> packages need. It thus has a local matrix of all compatibilities for all operating systems and platforms. When you want to install something, or run it, it can make sure that they're compatible.</li>
+<li><code>uv</code> also lets you specify what version of Python you want to be running for your project. It's kept in a <code>.python-version</code> file in the root of your project. This is taken from the <code>pyenv</code> project, which lets you manage and use different versions of Python.</li>
+<li><code>uv</code>, in order to navigate the different versions of Python, can also install Python on your computer and upgrade/change it. In other words, you no longer need to install Python yourself. Just let <code>uv</code> do it for you.</li>
+</ul>
+<p>Just where is <code>uv</code> installing our Python versions?!?</p>
+<p>On Unix, it'll put it in ~/.local/share/uv -- this is uv's storage playground</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8b6fcc8a-1c56-4bf2-9723-4a7202d55ce9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Next-up">Next up<a class="anchor-link" href="#Next-up">¶</a></h1><ol>
+<li>Concurrency</li>
+<li>Performance and diagnostics</li>
+<li>Governance</li>
+</ol>
+<p>Resume at :00</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=781fd98a-9dbe-442d-997c-8cbeb3def299">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Concurrency">Concurrency<a class="anchor-link" href="#Concurrency">¶</a></h1><p>Our modern computers run many processes at once. Each process contains some combination of instructions and data.</p>
+<p>Long ago, systems used <em>cooperative multitasking</em>. A program would run for a while, and then would say, "Hey, if someone else needs the CPU, they can have it." This worked fine, so long as everyone was well behaved. Some programs would not behave, and would never check if someone else needs the CPU, and this was bad.</p>
+<p>Then we got <em>pre-emptive multitasking</em>. Every so often, the OS yanks the current process out of memory and replaces it with another process. Any process has to be ready to be switched out or in at any point. This is far more stable, because it means that every process gets a chance to run.</p>
+<p>Unix systems, where Python started, have always had multiple processes, and have always been pre-emptively multitasking. From the early days of Python, people would ask how they can run more than one thing at a time. The answer was: Start a new process! You can even start a new process, communicate with it, have it do something for you, and then close it up.</p>
+<p>Running multiple processes was always pretty straightforward in Python. But there are two problems: (1) The Windows world didn't like this, because Windows processes are super heavy, and (2) many people instead wanted <em>threads</em>, not processes.</p>
+<p>Why would we want to use threads?</p>
+<ol>
+<li>They are far lighter weight than processes.</li>
+<li>On Windows, they would use threads for everything. In Unix, we would use processes for everything.</li>
+<li>Because threads are in the same process, they share memory -- they can share variables.</li>
+</ol>
+<p>If you want to just run one external program, then a process is fine.</p>
+<p>If you want to run a handful of external things, processes are probably fine.</p>
+<p>But when you get into hundreds or thousands of things you want to run at the same time, you really need threads. This is especially true because by sharing memory, they have very little communications overhead.</p>
+<p>FOr all of these reasons, Python people really wanted to use threads. And they could! For years, we've had the <code>threading</code> module, which lets us run a function in a thread. We also had the <code>multiprocessing</code> module, which let us run a function in a process.</p>
+<p><strong>EXCEPT</strong></p>
+<p>Python was developed in an age without threads, on Unix (where people hated threads). Not surprisingly, threads on Python were awful. How awful? Only one thread would run at a time.</p>
+<p>If you were starting a bunch of threads because you would want to run some calculations in parallel, then you were incredibly disappointed. Not only did all threads run on a single CPU (no matter how many you had in your computer), but only one would run at a time.</p>
+<p>This was due to the GIL -- the global interpreter lock -- that ensured that only one thread could touch the internals of Python's interpreter.</p>
+<p>Why, then, would you <em>ever</em> use threads in Python? The answer is: If you're doing I/O. If you switch from one thread to another while you're showing stuff in a UI, or you're communicating with the filesystem, or you're talking to the network, then it doesn't matter so much, and you can use threads effectively.</p>
+<p>But. This really bothered people.</p>
+<p>A number of things have happened on this front in the last 10 years:</p>
+<ul>
+<li>New paradigms for working with <code>threading</code> and <code>multiprocessing</code> emerged -- especially the idea of futures</li>
+<li>Work began on removing the GIL from Python, so that multiple threads could really run in parallel, not just concurrently.</li>
+<li>Work also began on "subinterpreters," which would allow you to have multiple Pythons runinng in the same process</li>
+<li>Python introduced <code>asyncio</code>, a new way of getting concurrency (definitely not parallelism) to work in the language.</li>
+</ul>
+<p>All of these were moving targets, and were changing.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=349c0d13-3a40-4432-9e5c-4628fcd41e62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [80]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># let's say that I want to work with threads, and I want to get the sizes of several files</span>
+
+<span class="c1"># I could (using the traditional technique) write a function, have that function write to a "queue" object, which </span>
+<span class="c1"># works with threads, and then invoke the function in a new thread for each file in the system.</span>
+
+<span class="c1"># the newer, nicer, better way to do this is with "futures"</span>
+
+<span class="c1"># If you call a function and get back a future, that means: I promise to give you a result as soon as I'm ready</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/etc/'</span><span class="p">)</span>
+
+<span class="c1"># this executor basically creates a bunch of threads (as many as we want) that we'll then reuse</span>
+<span class="c1"># we can create 20 threads, and use all of them (20 at a time), and if we want to process 100 files, each thread will </span>
+<span class="c1"># be used about 5 times.</span>
+
+<span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>                <span class="c1"># create a pool of threads</span>
+    <span class="k">for</span> <span class="n">one_path</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.conf'</span><span class="p">):</span>          <span class="c1"># go through a bunch of files</span>
+        <span class="n">one_result</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">one_path</span><span class="o">.</span><span class="n">stat</span><span class="p">)</span>   <span class="c1"># we submit, to the first thread that's available, our call to one_path.stat</span>
+        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">one_result</span><span class="p">)</span>         <span class="c1"># the result, a future, is put on the list</span>
+
+<span class="c1"># the with block only exits once all of the threads are done</span>
+
+<span class="p">[</span><span class="n">one_result</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+ <span class="k">for</span> <span class="n">one_result</span> <span class="ow">in</span> <span class="n">all_results</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[80]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[os.stat_result(st_mode=33188, st_ino=364081873, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=96, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529280),
+ os.stat_result(st_mode=33188, st_ino=364081902, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=0, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364081927, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=891, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364081951, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1027, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=3777950, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=19, st_atime=1243842029, st_mtime=1243842029, st_ctime=1784529387),
+ os.stat_result(st_mode=33188, st_ino=364082078, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1932, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=3776195, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=52, st_atime=1110990297, st_mtime=1110990297, st_ctime=1784529387),
+ os.stat_result(st_mode=33188, st_ino=364082099, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=23, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=370456332, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=1, st_size=368, st_atime=1785214957, st_mtime=1785214948, st_ctime=1785214948),
+ os.stat_result(st_mode=33188, st_ino=364082103, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=43, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364082105, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1051, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=369171719, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=0, st_atime=1784722245, st_mtime=1784722245, st_ctime=1784722245),
+ os.stat_result(st_mode=33188, st_ino=4862542, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=27, st_atime=1722747503, st_mtime=1722747503, st_ctime=1784529390),
+ os.stat_result(st_mode=33152, st_ino=3398344, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=24, st_atime=1372810105, st_mtime=1372810105, st_ctime=1784529382),
+ os.stat_result(st_mode=33060, st_ino=364082268, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=2451, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364082282, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1318, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364082285, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=557, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=627983e1-6e88-4b2d-be4d-f7ba58f34350">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [81]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># What if I want to use processes?</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>               <span class="c1"># create a pool of processes</span>
+    <span class="k">for</span> <span class="n">one_path</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.conf'</span><span class="p">):</span>          <span class="c1"># go through a bunch of files</span>
+        <span class="n">one_result</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">one_path</span><span class="o">.</span><span class="n">stat</span><span class="p">)</span>   <span class="c1"># we submit, to the first thread that's available, our call to one_path.stat</span>
+        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">one_result</span><span class="p">)</span>         <span class="c1"># the result, a future, is put on the list</span>
+
+<span class="c1"># the with block only exits once all of the threads are done</span>
+
+<span class="p">[</span><span class="n">one_result</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+ <span class="k">for</span> <span class="n">one_result</span> <span class="ow">in</span> <span class="n">all_results</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    from concurrent.futures._base import (FIRST_COMPLETED,
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+Traceback (most recent call last):
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    import logging
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    class TextWrapper:
+Traceback (most recent call last):
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+Traceback (most recent call last):
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    import textwrap
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+Traceback (most recent call last):
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+Traceback (most recent call last):
+    exitcode = _main(fd, parent_sentinel)
+    import textwrap
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    exitcode = _main(fd, parent_sentinel)
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    return _compile(pattern, flags)
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    exitcode = _main(fd, parent_sentinel)
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    import logging
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    p = _parser.parse(p, flags)
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    p = _parser.parse(p, flags)
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    return _compile(pattern, flags)
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    p = _parser.parse(p, flags)
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    wordsep_re = re.compile(r'''
+Traceback (most recent call last):
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    return _compile(pattern, flags)
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    p = _parser.parse(p, flags)
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    p = _parser.parse(p, flags)
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    import textwrap
+    itemsappend(_parse(source, state, verbose, nested + 1,
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    p = _parser.parse(p, flags)
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    exitcode = _main(fd, parent_sentinel)
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    return _compile(pattern, flags)
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    class TextWrapper:
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    wordsep_re = re.compile(r'''
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    import logging
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    import logging
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+Traceback (most recent call last):
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 122, in spawn_main
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    self = reduction.pickle.load(from_parent)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    exitcode = _main(fd, parent_sentinel)
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/multiprocessing/spawn.py", line 132, in _main
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    raise source.error("bad escape %s" % escape, len(escape))
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    code = _escape(source, this, state)
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    p = _parser.parse(p, flags)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    self = reduction.pickle.load(from_parent)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/__init__.py", line 8, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    code = _escape(source, this, state)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    from concurrent.futures._base import (FIRST_COMPLETED,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py", line 7, in &lt;module&gt;
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    import logging
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/logging/__init__.py", line 26, in &lt;module&gt;
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    p = _parser.parse(p, flags)
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    raise source.error("bad escape %s" % escape, len(escape))
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    import sys, os, time, io, re, traceback, warnings, weakref, collections.abc
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/traceback.py", line 7, in &lt;module&gt;
+    code = _escape(source, this, state)
+    wordsep_re = re.compile(r'''
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    import textwrap
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 17, in &lt;module&gt;
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    code = _escape(source, this, state)
+    code = _escape(source, this, state)
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    class TextWrapper:
+  File "/Users/reuven/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/textwrap.py", line 78, in TextWrapper
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    p = _parser.parse(p, flags)
+    wordsep_re = re.compile(r'''
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 289, in compile
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    raise source.error("bad escape %s" % escape, len(escape))
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    code = _escape(source, this, state)
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    return _compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/__init__.py", line 350, in _compile
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _compiler.compile(pattern, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_compiler.py", line 748, in compile
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    raise source.error("bad escape %s" % escape, len(escape))
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parser.parse(p, flags)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 980, in parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, flags &amp; SRE_FLAG_VERBOSE, 0)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    code = _escape(source, this, state)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 863, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    p = _parse_sub(source, state, sub_verbose, nested + 1)
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    raise source.error("bad escape %s" % escape, len(escape))
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 774, in _parse
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    p = _parse_sub(source, state, verbose, nested + 1)
+    p = _parse_sub(source, state, verbose, nested + 1)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 459, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    raise source.error("bad escape %s" % escape, len(escape))
+    code = _escape(source, this, state)
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 543, in _parse
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+    code = _escape(source, this, state)
+  File "/Users/reuven/.local/share/uv/python/cpython-3.13-macos-aarch64-none/lib/python3.13/re/_parser.py", line 442, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.PatternError: bad escape \z at position 388 (line 15, column 11)
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">BrokenProcessPool</span>                         Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[81]</span><span class="ansi-green-fg">, line 14</span>
+<span class="ansi-green-fg">     10</span>         all_results.append(one_result)         <span style="color: rgb(95,135,135)"># the result, a future, is put on the list</span>
+<span class="ansi-green-fg">     11</span> 
+<span class="ansi-green-fg">     12</span> <span style="color: rgb(95,135,135)"># the with block only exits once all of the threads are done</span>
+<span class="ansi-green-fg">     13</span> 
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">14</span> [one_result.result()
+<span class="ansi-green-fg">     15</span>  <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> one_result <span class="ansi-bold" style="color: rgb(0,135,0)">in</span> all_results]
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py:443</span>, in <span class="ansi-cyan-fg">Future.result</span><span class="ansi-blue-fg">(self, timeout)</span>
+<span class="ansi-green-fg">    441</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> CancelledError()
+<span class="ansi-green-fg">    442</span> <span class="ansi-bold" style="color: rgb(0,135,0)">elif</span> <span style="color: rgb(0,135,0)">self</span>._state == FINISHED:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">443</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-black-fg ansi-yellow-bg">self</span><span class="ansi-black-fg ansi-yellow-bg">.</span><span class="ansi-black-fg ansi-yellow-bg">__get_result</span><span class="ansi-black-fg ansi-yellow-bg">(</span><span class="ansi-black-fg ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">    445</span> <span style="color: rgb(0,135,0)">self</span>._condition.wait(timeout)
+<span class="ansi-green-fg">    447</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>._state <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> [CANCELLED, CANCELLED_AND_NOTIFIED]:
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/lib/python3.14/concurrent/futures/_base.py:395</span>, in <span class="ansi-cyan-fg">Future.__get_result</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">    393</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span>._exception <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">    394</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">try</span>:
+<span class="ansi-green-fg">--&gt; </span><span class="ansi-green-fg">395</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span style="color: rgb(0,135,0)">self</span>._exception
+<span class="ansi-green-fg">    396</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">finally</span>:
+<span class="ansi-green-fg">    397</span>         <span style="color: rgb(95,135,135)"># Break a reference cycle with the exception in self._exception</span>
+<span class="ansi-green-fg">    398</span>         <span style="color: rgb(0,135,0)">self</span> = <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+
+<span class="ansi-red-fg">BrokenProcessPool</span>: A process in the process pool was terminated abruptly while the future was running or pending.</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a2a2de4c-a08c-4336-835c-19202e2426ac">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [82]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># What if I want to use sub-interpreters?</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterpreterPoolExecutor</span>
+
+<span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">InterpreterPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>               <span class="c1"># create a pool of interpreters</span>
+    <span class="k">for</span> <span class="n">one_path</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.conf'</span><span class="p">):</span>          <span class="c1"># go through a bunch of files</span>
+        <span class="n">one_result</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">one_path</span><span class="o">.</span><span class="n">stat</span><span class="p">)</span>   <span class="c1"># we submit, to the first thread that's available, our call to one_path.stat</span>
+        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">one_result</span><span class="p">)</span>         <span class="c1"># the result, a future, is put on the list</span>
+
+<span class="c1"># the with block only exits once all of the threads are done</span>
+
+<span class="p">[</span><span class="n">one_result</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+ <span class="k">for</span> <span class="n">one_result</span> <span class="ow">in</span> <span class="n">all_results</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[82]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[os.stat_result(st_mode=33188, st_ino=364081873, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=96, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529280),
+ os.stat_result(st_mode=33188, st_ino=364081902, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=0, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364081927, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=891, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364081951, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1027, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=3777950, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=19, st_atime=1243842029, st_mtime=1243842029, st_ctime=1784529387),
+ os.stat_result(st_mode=33188, st_ino=364082078, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1932, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=3776195, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=52, st_atime=1110990297, st_mtime=1110990297, st_ctime=1784529387),
+ os.stat_result(st_mode=33188, st_ino=364082099, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=23, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=370456332, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=1, st_size=368, st_atime=1785214957, st_mtime=1785214948, st_ctime=1785214948),
+ os.stat_result(st_mode=33188, st_ino=364082103, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=43, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364082105, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1051, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=369171719, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=0, st_atime=1784722245, st_mtime=1784722245, st_ctime=1784722245),
+ os.stat_result(st_mode=33188, st_ino=4862542, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=27, st_atime=1722747503, st_mtime=1722747503, st_ctime=1784529390),
+ os.stat_result(st_mode=33152, st_ino=3398344, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=24, st_atime=1372810105, st_mtime=1372810105, st_ctime=1784529382),
+ os.stat_result(st_mode=33060, st_ino=364082268, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=2451, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364082282, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=1318, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281),
+ os.stat_result(st_mode=33188, st_ino=364082285, st_dev=16777233, st_nlink=1, st_uid=0, st_gid=0, st_size=557, st_atime=1782354543, st_mtime=1782354543, st_ctime=1784529281)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a5b22f82-f278-4197-8f46-c41f3fbe6299">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="What-does-this-mean-so-far?">What does this mean so far?<a class="anchor-link" href="#What-does-this-mean-so-far?">¶</a></h1><ol>
+<li>If you want to run a function on a whole lot of values, the executors make it really easy to do that.</li>
+<li>Threads are fastest (and you can have the most), processes actually run in parallel (but you can have the fewest), interpreters are in the middle.</li>
+</ol>
+<p>In many ways, you can then choose between these based on heft/number of what you're trying to do.</p>
+<p>But remember: This was only an issue because of the GIL. Without the GIL, we could use threads, and they would be lightweight and also in parallel.</p>
+<p>Enter the free-threaded version of Python, which came out LAST YEAR. If you install it and use it, then you get all of the parallel computation of processes, without the overhead.</p>
+<p>There are also downsides to using threads: One big one is that all of the threads share memory. If one decided to use variables at the same time as another thread, you can corrupt your data or have very hard-to-understand bugs.</p>
+<p>One reason why I love using executors is that it dramatically reduces the chances of these problems, because we're working in a functional style.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2fe34b1d-ae90-416b-98b8-7dc69d41851e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>How can I install a free-threaded version of Python?</p>
+<p>Just as <code>uv</code>.</p>
+<ul>
+<li><code>uv python pin 3.14t</code> -- this is the free-threaded version</li>
+<li><code>uv python pin 3.14+gil</code> -- this is the version with the GIL</li>
+</ul>
+<p>If you don't specify whether you want the <code>t</code> version or the <code>+gil</code> version, you will get the most recent version that was used on your computers.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e5a4a4d7-8c6f-4561-baaf-59ef7a9a96a1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Isn't-this-enough?">Isn't this enough?<a class="anchor-link" href="#Isn't-this-enough?">¶</a></h1><p>No. We also have <code>asyncio</code>.</p>
+<p>A few things were going on 15 years ago:</p>
+<ul>
+<li><code>nodejs</code> was becoming super popular</li>
+<li>Threads and free threading in Python were going nowhere.</li>
+<li>The network was clearly the future of programming.</li>
+</ul>
+<p>nodejs, oddly, runs in one process and one thread. It runs super super fast partly because JavaScript is fast, and partly because of how nodejs works -- it uses cooperative multitasking, or a version of it.</p>
+<p>Each function in nodejs knows how to pause every so often, go to sleep, and let some other function run. If you have a list of such functions, then you can just iterate over the list, letting each function run for a while, and then when it pauses, let someone else run.</p>
+<p>If this sounds like Python generators, you're right.</p>
+<p>The ideas behind <code>asyncio</code> are as follows:</p>
+<ul>
+<li><p>We'll write our code using something like generators.</p>
+</li>
+<li><p>We'll have an event loop that iterates across all of these functions, giving each a chance to run.</p>
+</li>
+<li><p>When the function asks for data from something that might take a long time, it goes to sleep, knowing that when it wakes up, the data will have arrived.</p>
+</li>
+<li><p>In <code>asyncio</code>, we write <code>async def</code> instead of <code>def</code> to define a function</p>
+</li>
+<li><p>We don't run the function ourselves! We invoke it, getting a "coroutine," which is basically a generator. We add that coroutine to the event loop, and let it run</p>
+</li>
+<li><p>Inside of our async def, we can run any Python code we want.</p>
+</li>
+<li><p>If we invoke something in our function that might take a while, and that is asyncio aware, we precede that call with the word <code>await</code></p>
+</li>
+<li><p>In modern <code>asyncio</code>, we usually put the main things we want to do inside of an <code>async with</code> block. That guarantees that all of the coroutines will finish running before our <code>with</code> is done.</p>
+</li>
+</ul>
+<p>It's just functions, albeit defined in a slightly weird way. They have access to all of the global variables that functions would.</p>
+<p>The weird things to realize are:</p>
+<ul>
+<li>You're not invoking the functions directly. They're being run (and paused, and run again) by the event loop</li>
+<li>If you invoke a function inside of your async def that isn't asyncio aware, it might take a long time -- because it won't <code>await</code>, and it won't release the CPU.  A classic example? <code>requests</code>. If you use it inside of your <code>async def</code>, it will never release the CPU, and all of the other routines will remain asleep. Instead, use <code>aiohttp</code>.</li>
+<li>Many "normal," classic PyPI packages don't work, or don't work reliably under <code>asyncio</code>.</li>
+<li>A big thing with <code>asyncio</code> is relearning what packages work, and how to structure your program.</li>
+</ul>
+<p>The big advantage of <code>asyncio</code> is that invoking a function is very very lightweight, even lighter weight than switching threads. And <code>asyncio</code> assumes that we're working with I/O that is slow to respond. So you can have tens of thousands of coroutines running on a single computer, each handling a different network connection.</p>
+<p>A number of packages use or expect (or prefer) <code>asyncio</code>:</p>
+<ul>
+<li>FastAPI</li>
+<li>Django and Flask</li>
+<li>SQLAlchemy</li>
+</ul>
+<p>The API for <code>asyncio</code> has become much easier in the last few years than used to be the case.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=587e5fdd-356d-4417-87ed-64f1d1345365">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Governance-in-Python">Governance in Python<a class="anchor-link" href="#Governance-in-Python">¶</a></h1><p>For years, Guido was in charge -- he was the BDFL, the Benevolent Dictator For Life. He decided what PEPs were accepted and which weren't.</p>
+<p>When the walrus operator was approved, he got angry and resigned as BDFL. That opened the question: Who is now in charge? Who approves them?</p>
+<p>Could it be the core developers? Yes... but they aren't officially organized in any way. The idea was to then create a "steering committee," with five people who are normally core developers and can approve/reject PEPs. The core developers elect the steering committee.</p>
+<p>Separately from the core developers and steering committee, you also have the PSF. The PSF owns the trademark. They run PyPI. They fund some core developers. They fund developer meetings.</p>
+<p>Paid PSF members elect a board that runs PSF actitivities.</p>
+<p>The core developers decided a few years ago that we'll have a new release of CPython every October.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f3d66e6e-7e75-4a7e-a3aa-9f8a256954b5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Improving-Python's-speed">Improving Python's speed<a class="anchor-link" href="#Improving-Python's-speed">¶</a></h1><p>Microsoft funded the Faster CPython group for a few years. Python now is much much faster than 10 years ago. It's faster (thanks to optimizations), but it also has the beginnings of a JIT (just-in-time compiler).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cd63a70-c45c-4366-93d4-987ec885a4d3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </main>
 </body>
 </html>
