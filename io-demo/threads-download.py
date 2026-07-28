@@ -11,7 +11,7 @@ if __name__ == '__main__':
     start_time = time.time()
 
     output = []
-    with ThreadPoolExecutor(max_workers=500) as e:
+    with ThreadPoolExecutor(max_workers=1500) as e:
         for i in range(1000):
             output.append(e.submit(download_file, i))
 
