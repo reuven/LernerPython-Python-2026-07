@@ -13,4 +13,5 @@ dependencies = [
     "plotly",
     "pyarrow",
     "xlrd",
+    "nbconvert[webpdf]>=7.17.1",
 ]
